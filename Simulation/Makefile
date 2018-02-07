@@ -25,6 +25,9 @@ SerialTest : SerialTest.cir OneDriver.cir 3phase.cir Ad8005.cir \
 SerialBoost : SerialBoost.cir 3phase.cir \
 	MMBT2222A.mod MMBT2907A.mod
 	$(NGSPICE) $^
+	
+Resonance : Resonance.cir 3phase.cir
+	$(NGSPICE) $^
 
 clean :
 	rm -f *~ \#* SerialTest.cir OneDriver.cir 3phase.cir SerialBoost.cir

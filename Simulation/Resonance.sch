@@ -1,0 +1,102 @@
+v 20170226 2
+C 40000 40000 0 0 0 Noqsi-title-B.sym
+{
+T 50000 40500 5 10 1 1 0 0 1
+date=20?
+T 53900 40500 5 10 1 1 0 0 1
+rev=0.0
+T 55400 40200 5 10 1 1 0 0 1
+auth=jpd
+T 50200 40800 5 8 1 1 0 0 1
+fname=?.sch
+T 53200 41200 5 14 1 1 0 4 1
+title=TITLE
+T 50400 40200 5 10 1 1 0 0 1
+page=1
+T 51900 40200 5 10 1 1 0 0 1
+pages=1
+}
+C 50700 44400 1 0 0 3phase.sym
+{
+T 52200 45000 5 10 1 1 0 0 1
+refdes=Clocks
+T 52100 44400 5 10 1 0 0 0 1
+m=16
+}
+C 47200 45500 1 0 0 resistor-1.sym
+{
+T 47400 45800 5 10 1 1 0 0 1
+refdes=R1
+T 47600 45300 5 10 1 1 0 0 1
+value=5
+}
+C 51400 44100 1 0 0 gnd-1.sym
+C 48100 45200 1 0 0 tline.sym
+{
+T 49150 45150 5 10 1 1 0 0 1
+refdes=T1
+T 48500 45900 5 10 1 1 0 0 1
+model-name=tlmod
+T 48100 45200 5 10 0 1 0 0 1
+spice-prototype=O? %pinseq model-name@
+}
+T 51700 49200 8 10 1 0 0 0 1
+spice-prolog=.model tlmod LTRA L=0.3uH C=100pF LEN=1
+C 49800 44900 1 0 0 gnd-1.sym
+C 48400 44900 1 0 0 gnd-1.sym
+C 47200 46900 1 0 0 resistor-1.sym
+{
+T 47400 47200 5 10 1 1 0 0 1
+refdes=R2
+T 47600 46700 5 10 1 1 0 0 1
+value=5
+}
+C 48100 46600 1 0 0 tline.sym
+{
+T 48100 46600 5 10 0 1 0 0 1
+spice-prototype=O? %pinseq model-name@
+T 49150 46550 5 10 1 1 0 0 1
+refdes=T2
+T 48500 47300 5 10 1 1 0 0 1
+model-name=tlmod
+}
+C 49800 46300 1 0 0 gnd-1.sym
+C 48400 46300 1 0 0 gnd-1.sym
+C 47200 48400 1 0 0 resistor-1.sym
+{
+T 47400 48700 5 10 1 1 0 0 1
+refdes=R3
+T 47600 48200 5 10 1 1 0 0 1
+value=5
+}
+C 48100 48100 1 0 0 tline.sym
+{
+T 48100 48100 5 10 0 1 0 0 1
+spice-prototype=O? %pinseq model-name@
+T 49150 48050 5 10 1 1 0 0 1
+refdes=T3
+T 48500 48800 5 10 1 1 0 0 1
+model-name=tlmod
+}
+C 49800 47800 1 0 0 gnd-1.sym
+C 48400 47800 1 0 0 gnd-1.sym
+N 50300 45600 51000 45600 4
+{
+T 50500 45800 5 10 1 1 0 0 1
+netname=P1
+}
+N 51000 45600 51000 45300 4
+N 50300 47000 51500 47000 4
+N 51500 47000 51500 45300 4
+N 50300 48500 52000 48500 4
+N 52000 48500 52000 45300 4
+C 47100 46700 1 0 0 gnd-1.sym
+C 47100 48200 1 0 0 gnd-1.sym
+C 46900 44400 1 0 0 vac-1.sym
+{
+T 47600 45050 5 10 1 1 0 0 1
+refdes=V1
+T 47600 44850 5 10 1 1 0 0 1
+value=dc 0 ac 1
+}
+C 47100 44100 1 0 0 gnd-1.sym
