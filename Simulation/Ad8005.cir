@@ -1,0 +1,159 @@
+* AD8005 SPICE Macro-model       
+* Description: Amplifier
+* Generic Desc: 180 MHz current feedback amp - 400mA
+* Developed by: SMR,TRW,ADI                                          
+* Revision History: 08/10/2012 - Updated to new header style
+* 2.0 (03/2008)
+* Copyright 1997, 2012 by Analog Devices, Inc.
+*
+* Refer to http://www.analog.com/Analog_Root/static/techSupport/designTools/spiceModels/license/spice_general.html for License Statement. Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+* BEGIN Notes:
+*
+* Not Modeled:
+*     distortion is not characterized
+*
+* Parameters modeled include:
+*     closed loop gain and phase vs bandwidth
+*     output current and voltage limiting
+*     offset voltage (is static, will not vary with vcm)
+*     ibias (again, is static, will not vary with vcm)
+*     slew rate and step response performance
+*     (slew rate is based on 10-90% of step response)
+*     current on output will be reflected to the supplies 
+*     vnoise, referred to the input
+*     inoise, referred to the input
+*
+* END Notes
+*
+* Node assignments
+*			non-inverting input
+*			|  inverting input
+*			|  |  positive supply
+*			|  |  |   negative supply
+*			|  |  |	  |  output
+*			|  |  |   |  |
+.SUBCKT AD8005		1  2  99  50 28
+
+
+***** Input stage 
+
+q1  50  3  5  qp1
+q2  99  5  4  qn1
+q3  99  3  6  qn1
+q4  50  6  4  qp1
+v1   4  2  0
+i1  99  5  25e-6
+i2   6  50 25e-6
+
+cin1  1  98 1.6e-12
+cin2  2  98 0.75e-12
+
+
+***** Input error sources
+
+Eos    3  1  poly(1) 20 98 5e-3 1
+fbn   2  98 poly(1) vnoise3 5e-6 1e-3
+fbp   1  98 poly(1) vnoise3 5e-6 1e-3
+
+***** Gain stage Pole at 126KHz
+
+f1    98  7 v1 1
+rgain 7  98 1e6
+cgain 7  98 630f
+
+vcl1  99 8  1.1
+vcl2  9  50 1.1
+dcl1  7  8  d1
+dcl2  9  7  d1
+
+
+***** Second Pole at 300MHz
+
+epole2 14 98 7 98 1
+rpole2 14 15 1
+cpole2 15 98 530p
+
+***** Third Pole @ 600MHz
+
+epole3 17 98 15 98 1
+rpole3 17 16 1
+cpole3 16 98 265p
+
+
+***** Buffer stage
+
+gbuf 98 13 16 98 1e-2
+rbuf 98 13 1e2
+
+***** Reference stage
+
+eref   98 0 poly(2) 99 0 50 0 0 0.5 0.5
+ecmref 30 0 poly(2) 1 0 2 0 0 0.5 0.5
+
+
+***** VNoise stage
+
+rnoise1 19 98 10.6e-3
+vnoise1 19 98 0
+vnoise2  21 98 0.53
+dnoise1 21 19 dn
+
+fnoise1 20 98 vnoise3 1
+rnoise2 20 98 1
+
+
+***** INoise stage
+
+rnoise3 22 98 0.46e-3
+vnoise3 22 98 0
+vnoise4 24 98 0.6
+dnoise2 24 22 dn
+
+fnoise2 23 98 vnoise3 1
+rnoise4 23 98 1
+
+
+
+***** Output current reflected to supplies
+
+fcurr 98 40 voc 1
+vcur1 26 98 0
+Vcur2 98 27 0
+dcur1 40 26 d1
+dcur2 27 40 d1
+
+fout1 0  99 poly(2) vo1 vcur1 0 1 -1
+fout2 50 0  poly(2) vo2 vcur2 0 1 -1
+Iq 99 50 325.98e-6
+Iq2 98 99 .051e-4
+***** Output stage
+
+rout1 10 90 2
+rout2 10 91 2
+vo1 99 90 0
+vo2 91 50 0
+voc 10 28 0
+
+*rout3 28 98 1e6
+gout1 10 90 99 13 0.5
+gout2 10 91 50 13 0.5
+
+vcl3 10 11 -1.3
+vcl4 12 10 -1.3
+dcl4 11 13 d1
+dcl3 13 12 d1
+
+				  
+
+.model qp1 pnp()
+.model qn1 npn(bf=100)
+.model d1 d()
+.model dn d()
+.ends ad8005
+
+
+
+
+

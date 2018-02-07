@@ -1,0 +1,204 @@
+v 20170226 2
+C 37700 38700 0 0 0 Noqsi-title-B.sym
+{
+T 47700 39200 5 10 1 1 0 0 1
+date=20180207
+T 51600 39200 5 10 1 1 0 0 1
+rev=0.0
+T 53100 38900 5 10 1 1 0 0 1
+auth=jpd
+T 47900 39500 5 8 1 1 0 0 1
+fname=SerialTest.sch
+T 50900 39900 5 14 1 1 0 4 1
+title=Serial Driver Test
+T 48100 38900 5 10 1 1 0 0 1
+page=1
+T 49600 38900 5 10 1 1 0 0 1
+pages=1
+}
+C 46000 42600 1 0 0 OneDriver.sym
+{
+T 46700 43200 5 10 1 1 0 0 1
+refdes=Drv1
+T 46700 44000 5 10 0 0 0 0 1
+symversion=20180130
+}
+C 52500 41300 1 0 0 3phase.sym
+{
+T 54000 41900 5 10 1 1 0 0 1
+refdes=Clocks
+}
+N 50800 43000 52800 43000 4
+{
+T 52600 43200 5 10 1 1 0 0 1
+netname=P1
+}
+N 52800 43000 52800 42200 4
+C 46000 44600 1 0 0 OneDriver.sym
+{
+T 46700 45200 5 10 1 1 0 0 1
+refdes=Drv2
+T 46700 46000 5 10 0 0 0 0 1
+symversion=20180130
+}
+N 50800 45000 53300 45000 4
+{
+T 52600 45200 5 10 1 1 0 0 1
+netname=P2
+}
+N 53300 45000 53300 42200 4
+C 46000 46600 1 0 0 OneDriver.sym
+{
+T 46700 47200 5 10 1 1 0 0 1
+refdes=Drv3
+T 46700 48000 5 10 0 0 0 0 1
+symversion=20180130
+}
+N 50800 47000 53800 47000 4
+{
+T 52500 47200 5 10 1 1 0 0 1
+netname=P3
+}
+N 53800 47000 53800 42200 4
+C 53200 41000 1 0 0 gnd-1.sym
+C 46200 40700 1 0 0 vdc-1.sym
+{
+T 46900 41350 5 10 1 1 0 0 1
+refdes=Vm
+T 46900 41150 5 10 1 1 0 0 1
+value=DC -7V
+}
+C 46400 40400 1 0 0 gnd-1.sym
+N 46500 41900 46500 42600 4
+{
+T 46800 42200 5 10 1 1 90 0 1
+netname=vm
+}
+N 46500 42600 47800 42600 4
+N 47800 42600 47800 46600 4
+N 47800 46600 46500 46600 4
+N 46500 44600 47800 44600 4
+C 47900 40700 1 0 0 vdc-1.sym
+{
+T 48600 41350 5 10 1 1 0 0 1
+refdes=Vp
+T 48600 41150 5 10 1 1 0 0 1
+value=DC 3V
+}
+C 48100 40400 1 0 0 gnd-1.sym
+N 48200 41900 48200 47400 4
+{
+T 48300 42300 5 10 1 1 90 0 1
+netname=vp
+}
+N 48200 47400 46500 47400 4
+N 46500 45400 48200 45400 4
+N 46500 43400 48200 43400 4
+C 44500 40700 1 0 0 vdc-1.sym
+{
+T 45200 41350 5 10 1 1 0 0 1
+refdes=Voff
+T 45200 41150 5 10 1 1 0 0 1
+value=DC 5V
+}
+C 44700 40400 1 0 0 gnd-1.sym
+N 44800 41900 44800 46800 4
+{
+T 45000 42200 5 10 1 1 90 0 1
+netname=voff
+}
+N 44800 42800 46000 42800 4
+N 44800 44800 46000 44800 4
+N 44800 46800 46000 46800 4
+C 41000 46000 1 0 0 vpulse-1.sym
+{
+T 41700 46650 5 10 1 1 0 0 1
+refdes=VP3
+T 41700 46450 5 10 1 1 0 0 1
+value=pulse 0 {hs} 0 {tt} {tt} {pw} {cycle}
+}
+C 41000 44000 1 0 0 vpulse-1.sym
+{
+T 41700 44650 5 10 1 1 0 0 1
+refdes=VP2
+T 41700 44450 5 10 1 1 0 0 1
+value=pulse {hs} 0 {cycle/6} {tt} {tt} {pw} {cycle}
+}
+C 41000 42000 1 0 0 vpulse-1.sym
+{
+T 41700 42650 5 10 1 1 0 0 1
+refdes=VP1
+T 41700 42450 5 10 1 1 0 0 1
+value=pulse 0 {hs} {cycle/3} {tt} {tt} {pw} {cycle}
+}
+C 41200 41700 1 0 0 gnd-1.sym
+C 41200 43700 1 0 0 gnd-1.sym
+C 41200 45700 1 0 0 gnd-1.sym
+N 46000 47200 41300 47200 4
+{
+T 43900 47300 5 10 1 1 0 6 1
+netname=vp3
+}
+N 46000 45200 41300 45200 4
+{
+T 43600 45300 5 10 1 1 0 6 1
+netname=vp2
+}
+N 46000 43200 41300 43200 4
+{
+T 43600 43400 5 10 1 1 0 6 1
+netname=vp1
+}
+C 48900 42300 1 0 0 gnd-1.sym
+C 50300 42300 1 0 0 gnd-1.sym
+C 48900 44300 1 0 0 gnd-1.sym
+C 50300 44300 1 0 0 gnd-1.sym
+C 48600 46600 1 0 0 tline.sym
+{
+T 48600 46600 5 10 0 1 0 0 1
+spice-prototype=O? %pinseq model-name@
+T 49650 46550 5 10 1 1 0 0 1
+refdes=T3
+T 49000 47300 5 10 1 1 0 0 1
+model-name=tlmod
+}
+C 48900 46300 1 0 0 gnd-1.sym
+C 50300 46300 1 0 0 gnd-1.sym
+C 48600 44600 1 0 0 tline.sym
+{
+T 48600 44600 5 10 0 1 0 0 1
+spice-prototype=O? %pinseq model-name@
+T 49650 44550 5 10 1 1 0 0 1
+refdes=T2
+T 49000 45300 5 10 1 1 0 0 1
+model-name=tlmod
+}
+C 48600 42600 1 0 0 tline.sym
+{
+T 48600 42600 5 10 0 1 0 0 1
+spice-prototype=O? %pinseq model-name@
+T 49650 42550 5 10 1 1 0 0 1
+refdes=T1
+T 49000 43300 5 10 1 1 0 0 1
+model-name=tlmod
+}
+T 48700 48000 8 10 1 1 0 0 1
+spice-prolog=.model tlmod LTRA L=0.3uH C=100pF LEN=1
+N 48600 47000 47000 47000 4
+N 48600 45000 47000 45000 4
+N 48600 43000 47000 43000 4
+T 38200 40600 8 10 1 1 0 0 14
+spice-epilog=
+.param cycle=4/15Meg
+.param tt=10ns
+.param pw={cycle/2-tt}
+.param swing=6V
+.param hs={swing/2}
+.tran 1n {2*cycle} {cycle}
+.control
+set reltol=0.01
+run
+linearize
+plot P1 P2 P3
+plot P1-P2 P2-P3 P3-P1
+.endc
